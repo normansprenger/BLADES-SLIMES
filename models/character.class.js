@@ -12,6 +12,7 @@ class Character extends MovableObject {
         'img/1_Hero/Musketeer/WALK/tile007.png',
     ];
     world;
+    WALKING_SOUND = new Audio('audio/walking.mp3');
 
     constructor() {
         super().loadImage('img/1_Hero/Musketeer/WALK/tile000.png');
@@ -24,18 +25,24 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            this.WALKING_SOUND.pause();
+            if (this.world.keyboard.RIGHT && (this.x < this.world.level.levelEndX)) {
+
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.WALKING_SOUND.play();
             }
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.world.keyboard.LEFT) {
+            this.WALKING_SOUND.pause();
+            if (this.world.keyboard.LEFT && this.x > 0) {
+
                 this.x -= this.speed;
                 this.otherDirection = true;
+                this.WALKING_SOUND.play();
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 60;
         }, 1000 / 60);
 
 
@@ -43,10 +50,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
 
                 //WALKANIMATIONRIGHT
-                let i = this.currentImage % this.IMAGES_WALKING.length;
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 140);
     }

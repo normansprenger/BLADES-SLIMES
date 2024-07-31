@@ -1,36 +1,6 @@
 class World {
     character = new Character();
-    enemies = [
-        new Slime(),
-        new Slime(),
-        new Slime(),
-    ];
-    clouds = [
-        new Cloud(),
-    ];
-    backgroundObjects = [
-        new BackgroundObject('img/4_Background/nature_1/1.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/2.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/3.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/5.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/6.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/6.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/7.png', 100,0),
-        new BackgroundObject('img/4_Background/nature_1/8.png', 0,0),
-        new BackgroundObject('img/4_Background/nature_1/10.png', 0,90),
-        new BackgroundObject('img/4_Background/nature_1/1.png', 720,0),
-        new BackgroundObject('img/4_Background/nature_1/2.png', 720,0),
-        new BackgroundObject('img/4_Background/nature_1/3.png', 720,0),
-        new BackgroundObject('img/4_Background/nature_1/8.png', 720,0),
-        new BackgroundObject('img/4_Background/nature_1/10.png', 720,90),
-        new BackgroundObject('img/4_Background/nature_2/1.png', 1040,0),
-        new BackgroundObject('img/4_Background/nature_2/2.png', 1040,90),
-        new BackgroundObject('img/4_Background/nature_2/3.png', 1040,0),
-        new BackgroundObject('img/4_Background/nature_2/4.png', 1040,0),
-        new BackgroundObject('img/4_Background/nature_1/10.png', 1040,90),
-
-        
-    ];
+    level = level1;
 
     ctx;
     canvas;
@@ -50,10 +20,10 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x,0);
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x,0);
 
 
