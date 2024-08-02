@@ -3,6 +3,10 @@ class Character extends MovableObject {
     y = 284;
     acceleration = 2.5;
     speedY = 0;
+    offsetX = 80;
+    offsetY = 80;
+    widthOffsetX= 80;
+    heightOffsetY = 70;
 
     IMAGES_WALKING = [
         'img/1_Hero/Musketeer/WALK/tile000.png',
@@ -74,7 +78,7 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.isHurt()){
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);

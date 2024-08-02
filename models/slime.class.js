@@ -1,5 +1,7 @@
 class Slime extends MovableObject {
 
+
+
     IMAGES_WALKING = [
         'img/3_Slimes/Blue_Slime/WALK/tile000.png',
         'img/3_Slimes/Blue_Slime/WALK/tile001.png',
@@ -23,9 +25,9 @@ class Slime extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft(); 
-        }, 1000/60);
-        
+            this.moveLeft();
+        }, 1000 / 60);
+
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
