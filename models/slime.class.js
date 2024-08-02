@@ -17,12 +17,15 @@ class Slime extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
 
         this.x = 200 + (Math.random() * 500);
-        this.speed = 0.15 + Math.random() * 0.45;
+        this.speed = 0.10 + Math.random() * 0.45;
         this.animate();
     }
 
     animate() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft(); 
+        }, 1000/60);
+        
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
