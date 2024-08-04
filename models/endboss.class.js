@@ -7,6 +7,8 @@ class Endboss extends MovableObject {
     offsetX = 130;
     heightOffsetY = 400;
     offsetY = 460;
+    energy = 70;
+    speed = 1;
 
 
 
@@ -36,9 +38,19 @@ class Endboss extends MovableObject {
     }
 
     animate() {
+
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 140);
+
+
+        setInterval(() => {
+
+            if (this.energy > 0 && world.character.x > 3000) {
+                this.moveLeft();
+            }
+        }, 1000/60);
+
     }
 
 

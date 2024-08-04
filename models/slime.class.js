@@ -27,13 +27,13 @@ class Slime extends MovableObject {
         'img/3_Slimes/Blue_Slime/DEAD/tile002.png',
     ];
 
-    constructor() {
+    constructor(x) {
         super().loadImage('img/3_Slimes/Blue_Slime/WALK/tile000.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.energy = 10;
-        this.x = 300 + (Math.random() * 3000);
-        this.speed = 0.10 + Math.random() * 0.45;
+        this.x = x + (Math.random() * 100);
+        this.speed =  0.10 + Math.random() * 0.45;
         this.animate();
     }
 
@@ -57,6 +57,6 @@ class Slime extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 140);
+        }, 120);
     }
 }

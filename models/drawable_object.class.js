@@ -1,4 +1,4 @@
-class DrawableObject {
+class DrawableObject{
 
     img;
     imageCache = {};
@@ -33,8 +33,8 @@ class DrawableObject {
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Slime || this instanceof Endboss || this instanceof Attack) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = '0.5';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x + this.offsetX, this.y + this.offsetY, this.width - this.widthOffsetX, this.height - this.heightOffsetY);
             ctx.stroke();
         }

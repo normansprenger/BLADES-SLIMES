@@ -1,11 +1,15 @@
 const level1 = new Level(
     [
-        new Slime(),
-        new Slime(),
-        new Slime(),
-        new Slime(),
-        new Slime(),
-        new Slime(),
+        new Slime(300),
+        new Slime(600),
+        new Slime(800),
+        new Slime(1200),
+        new Slime(1400),
+        new Slime(1800),
+        new Slime(2200),
+        new Slime(2600),
+        new Slime(3000),
+        new Slime(3500),
         new Endboss(),
     ],
     [
@@ -20,7 +24,7 @@ const level1 = new Level(
 
     ],
     [
-        new Coin(400,400),
+        new Coin(600,400),
         new Coin(800,200),
         new Coin(1000,300),
         new Coin(1300,400),

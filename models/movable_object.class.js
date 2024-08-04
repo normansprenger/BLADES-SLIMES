@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     offsetX = 0;
     offsetY = 0;
+    widthOffsetX = 0;
+    heightOffsetY = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -38,15 +40,19 @@ class MovableObject extends DrawableObject {
     }
 
 
-
+    //(this.x + this.offsetX, this.y + this.offsetY, this.width - this.widthOffsetX, this.height - this.heightOffsetY)
     isColliding(mo) {
-        return (this.x + this.offsetX) + (this.width - this.widthOffsetX) > mo.x + mo.offsetX &&
-            (this.y + this.offsetY) + (this.height + this.heightOffsetY) > mo.y + mo.offsetY &&
-            this.x + this.offsetX < mo.x + mo.offsetX &&
-            this.y + this.offsetY < mo.y + mo.offsetY + mo.height + mo.heightOffsetY;
+        return (((this.x + this.offsetX + this.width - this.widthOffsetX) > (mo.x + mo.offsetX)) && //rechteKante über linke
+            ((this.x + this.offsetX) < (mo.x + mo.offsetX + mo.width - mo.widthOffsetX)) &&  //linke vor rechter
+            ((this.y + this.offsetY + this.height - this.heightOffsetY) > (mo.y + mo.offsetY)) && //rechteKante über linke
+            ((this.y + this.offsetY) < (mo.y + mo.offsetY + mo.height - mo.heightOffsetY))
+        )
     }
+    //        return (this.x + this.offsetX) + (this.width - this.widthOffsetX) > mo.x + mo.offsetX &&
+    //            (this.y + this.offsetY) + (this.height - this.heightOffsetY) > mo.y + mo.offsetY &&
+    //            this.x + this.offsetX < mo.x + mo.offsetX &&
+    //            this.y + this.offsetY < mo.y + mo.offsetY + mo.height - mo.heightOffsetY;
 
-    
 
     hit() {
         this.energy -= 10;
