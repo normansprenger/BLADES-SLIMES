@@ -7,4 +7,6 @@ class Keyboard{
     E = false;
     R = false;
     F = false;
+    A = false;
+    SHIFT = false;
 }

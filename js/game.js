@@ -5,9 +5,6 @@ let keyboard = new Keyboard();
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-    console.log('my character is ', world.character )
-
 }
 
 document.addEventListener('keydown', (event)=>{
@@ -35,6 +32,12 @@ document.addEventListener('keydown', (event)=>{
     if (event.keyCode == 70){
         keyboard.F = true;
     }
+    if (event.keyCode == 16){
+        keyboard.SHIFT = true;
+    }
+    if (event.keyCode == 65){
+        keyboard.A = true;
+    }
 })
 
 document.addEventListener('keyup', (event)=>{
@@ -61,5 +64,11 @@ document.addEventListener('keyup', (event)=>{
     }
     if (event.keyCode == 70){
         keyboard.F = false;
+    }
+    if (event.keyCode == 16){
+        keyboard.SHIFT = false;
+    }
+    if (event.keyCode == 65){
+        keyboard.A = false;
     }
 })

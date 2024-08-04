@@ -9,6 +9,8 @@ class DrawableObject {
     width = 180;
     widthOffsetX = 0;
     heightOffsetY = 0;
+    offsetX = 0;
+    offsetY= 0;
 
     loadImage(path) {
         this.img = new Image();
@@ -29,11 +31,11 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Slime || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof Slime || this instanceof Endboss || this instanceof Attack) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y + this.offsetY, this.width - this.widthOffsetX, this.height - this.heightOffsetY);
+            ctx.rect(this.x + this.offsetX, this.y + this.offsetY, this.width - this.widthOffsetX, this.height - this.heightOffsetY);
             ctx.stroke();
         }
     }

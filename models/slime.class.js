@@ -1,5 +1,13 @@
 class Slime extends MovableObject {
-
+    height = 300;
+    width = 300;
+    y = 170;
+    widthOffsetX = 170;
+    offsetX = 80;
+    heightOffsetY = 200;
+    offsetY = 230;
+    energy = 10;
+    t=0;
 
 
     IMAGES_WALKING = [
@@ -13,25 +21,42 @@ class Slime extends MovableObject {
         'img/3_Slimes/Blue_Slime/WALK/tile007.png',
 
     ];
+    IMAGES_DEAD = [
+        'img/3_Slimes/Blue_Slime/DEAD/tile000.png',
+        'img/3_Slimes/Blue_Slime/DEAD/tile001.png',
+        'img/3_Slimes/Blue_Slime/DEAD/tile002.png',
+    ];
 
     constructor() {
         super().loadImage('img/3_Slimes/Blue_Slime/WALK/tile000.png');
         this.loadImages(this.IMAGES_WALKING);
-
-        this.x = 200 + (Math.random() * 500);
+        this.loadImages(this.IMAGES_DEAD);
+        this.energy = 10;
+        this.x = 300 + (Math.random() * 3000);
         this.speed = 0.10 + Math.random() * 0.45;
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            if (this.energy > 0) {
+                this.moveLeft();
+            }
         }, 1000 / 60);
 
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 140);
+            if (this.energy < 1) {
+                this.playAnimation(this.IMAGES_DEAD);
+                if(this.t<10){
+                    this.x += 10;
+                    this.y += 10;
+                    this.t++;
+                }
 
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }, 140);
     }
 }
