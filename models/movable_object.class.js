@@ -66,7 +66,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timespan = new Date().getTime() - this.lastHit;
         timespan = timespan / 1000;
-        return timespan < 0.5;
+        return timespan < 0.2;
     }
 
     isDead() {

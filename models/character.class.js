@@ -3,11 +3,13 @@ class Character extends MovableObject {
     y = 284;
     acceleration = 2.5;
     speedY = 0;
-    money =0;
+    money = 0;
     offsetX = 60;
     offsetY = 80;
     widthOffsetX = 135;
     heightOffsetY = 70;
+    energy = 100;
+    magicEnergy = 0;
 
     IMAGES_WALKING = [
         'img/1_Hero/Musketeer/WALK/tile000.png',
@@ -64,11 +66,19 @@ class Character extends MovableObject {
     IMAGES_ATTACK = [
         'img/1_Hero/Musketeer/ATTACK_1/tile003.png',
         'img/1_Hero/Musketeer/ATTACK_1/tile003.png',
-        'img/1_Hero/Musketeer/ATTACK_1/tile000.png',
-        'img/1_Hero/Musketeer/ATTACK_1/tile001.png',
+        'img/1_Hero/Musketeer/ATTACK_1/tile003.png',
+        'img/1_Hero/Musketeer/ATTACK_1/tile003.png',
         'img/1_Hero/Musketeer/ATTACK_1/tile002.png',
         'img/1_Hero/Musketeer/ATTACK_1/tile003.png',
         'img/1_Hero/Musketeer/ATTACK_1/tile004.png',
+
+    ];
+    IMAGES_POWERSHOTATTACK = [
+        'img/1_Hero/Musketeer/ATTACK_4/tile000.png',
+        'img/1_Hero/Musketeer/ATTACK_4/tile001.png',
+        'img/1_Hero/Musketeer/ATTACK_4/tile002.png',
+        'img/1_Hero/Musketeer/ATTACK_4/tile003.png',
+        'img/1_Hero/Musketeer/ATTACK_4/tile004.png',
 
     ];
 
@@ -82,6 +92,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_POWERSHOTATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
         this.applyGravity();
@@ -124,14 +135,16 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+            } else if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            } else if (this.world.keyboard.S && !this.world.SHIFT) {
+                this.playAnimation(this.IMAGES_POWERSHOTATTACK);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_RUN);
-            } else if (this.world.keyboard.A && !this.world.SHIFT) {
-                this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
@@ -149,5 +162,9 @@ class Character extends MovableObject {
 
     moneyHit() {
         this.money += 10;
+    }
+
+    gainMagicEnergy() {
+        this.magicEnergy += 10;
     }
 }

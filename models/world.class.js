@@ -7,7 +7,9 @@ class World {
     camera_x = 0;
     statusBar = new Statusbar();
     coinBar = new Coinbar();
+    magicBar = new Magicbar();
     attacks = [];
+    powershots = [];
 
 
     constructor(canvas, keyboard) {
@@ -18,7 +20,9 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.createAttack();
+        this.createPowerShot();
         this.checkAttackCollisions();
+        this.checkPowershotCollisions();
         this.checkCoinCollisions();
 
     }
@@ -40,8 +44,30 @@ class World {
         setInterval(() => {
             if (this.attacks[0]) {
                 this.level.enemies.forEach((enemy) => {
-                    if (this.attacks[0].isColliding(enemy)) {
+                    if (this.attacks[0].isColliding(enemy) && enemy.energy > 0) {
                         enemy.hit();
+                        if(this.character.magicEnergy < 100){
+                        this.character.gainMagicEnergy();
+                        }
+                        this.magicBar.setPercentage(this.character.magicEnergy);
+                    }
+                });
+            }
+        }, 100);
+    }
+
+    checkPowershotCollisions() {
+        setInterval(() => {
+            if (this.powershots[0]) {
+                this.level.enemies.forEach((enemy) => {
+                    if (this.powershots[0]?.isColliding(enemy) && enemy.energy > 0) {
+                        enemy.hit();
+                        enemy.hit();
+                        if(this.character.magicEnergy < 100){
+                        this.character.gainMagicEnergy();
+                        }
+                        this.magicBar.setPercentage(this.character.magicEnergy);
+                        this.powershots=[];
                     }
                 });
             }
@@ -73,6 +99,20 @@ class World {
         }, 10);
     }
 
+    createPowerShot(){
+        setInterval(() => {
+            if (world.keyboard.S && !world.keyboard.SHIFT && this.powershots.length == 0 && world.character.y > 285 && world.character.magicEnergy >= 20) {
+                let newPowershot = new Powershot(this.character.x, this.character.y);
+                this.powershots.push(newPowershot);
+                world.character.magicEnergy -=20;
+                this.magicBar.setPercentage(world.character.magicEnergy);
+                setTimeout(() => {
+                    this.powershots = [];
+                }, 1200);
+            }
+        }, 10); 
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -83,9 +123,11 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
+        this.addToMap(this.magicBar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.attacks);
+        this.addObjectsToMap(this.powershots);
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -104,7 +146,7 @@ class World {
             this.flipImg(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {
@@ -127,9 +169,4 @@ class World {
     setWorld() {
         this.character.world = this;
     }
-
-
-
-
-
 }

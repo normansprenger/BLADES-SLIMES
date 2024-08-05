@@ -15,26 +15,27 @@
     <script src="models/cloud.class.js"></script>
     <script src="models/status_bar.class.js"></script>
     <script src="models/coin_bar.class.js"></script>
+    <script src="models/magic_bar.class.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/background_object_class.js"></script>
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="models/attack.class.js"></script>
+    <script src="models/powershot.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 
 </head>
 
-<body onload="init()">
-    <h1>BLADES & SLIMES</h1>
+<body>
     <div class="canvasContainer">
         <canvas id="canvas" width="720px" height="480px">
-        </canvas>
-        <div class="instructions">
-            INSTRUCTIONS
-        </div>
+        </canvas>     
     </div>
+    <div class="homeScreen" id="homeScreen" onclick="startGame()"></div>
+    <div class="endScreenSuccess dnone" id="endScreenSuccess" onclick="resetGame()"></div>
+    <div class="endScreenDead dnone" id="endScreenDead" onclick="resetGame()"></div>
 </body>
 
 </html>

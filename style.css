@@ -1,10 +1,11 @@
-html{
+html {
     margin: 0;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-image: url(/img/4_Background/nature_4/origbig.png);
     background-repeat: no-repeat;
@@ -15,23 +16,81 @@ body{
     margin: 0;
 }
 
-canvas{
+canvas {
     background-color: black;
     display: block;
+    z-index: 1;
 }
 
-.canvasContainer{
-    background-color: rgba(0, 0, 0, 0.221);
-}
 
-@media screen and (max-width: 720px){
-    canvas{
+
+@media screen and (max-width: 720px) {
+
+    canvas,
+    .endScreenSuccess,
+    .endScreenDead,
+    .homeScreen {
+        width: 100%;
+    }
+
+    canvas,
+    .endScreenSuccess,
+    .endScreenDead,
+    .homeScreen {
         width: 100%;
     }
 }
 
-@media screen and (max-height: 480px){
-    canvas{
+@media screen and (max-height: 480px) {
+
+    canvas,
+    .endScreenSuccess,
+    .endScreenDead,
+    .homeScreen {
         height: 100vh;
     }
+
+    canvas,
+    .endScreenSuccess,
+    .endScreenDead,
+    .homeScreen {
+        height: 100vh;
+    }
+}
+
+.homeScreen {
+    position: fixed;
+    display: flex;
+    height: 480px;
+    width: 720px;
+    background-image: url(/img/4_Background/nature_1/HOMESCREEN.png);
+    background-size: 720px 480px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.endScreenSuccess {
+    position: fixed;
+    display: flex;
+    height: 480px;
+    width: 720px;
+    background-image: url(/img/4_Background/nature_1/endscreensuccess.png);
+    background-size: 720px 480px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.endScreenDead {
+    position: fixed;
+    display: flex;
+    height: 480px;
+    width: 720px;
+    background-image: url(/img/4_Background/nature_1/endscreendead.png);
+    background-size: 720px 480px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.dnone {
+    display: none;
 }

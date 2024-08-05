@@ -31,7 +31,7 @@ class DrawableObject{
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Slime || this instanceof Endboss || this instanceof Attack) {
+        if (this instanceof Character || this instanceof Slime || this instanceof Endboss || this instanceof Attack || this instanceof Powershot) {
             ctx.beginPath();
             ctx.lineWidth = '0.5';
             ctx.strokeStyle = 'red';

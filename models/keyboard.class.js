@@ -1,4 +1,4 @@
-class Keyboard{
+class Keyboard {
     LEFT = false;
     RIGHT = false;
     UP = false;
@@ -9,4 +9,5 @@ class Keyboard{
     F = false;
     A = false;
     SHIFT = false;
+    S = false;
 }
