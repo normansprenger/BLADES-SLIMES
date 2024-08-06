@@ -12,6 +12,7 @@ class Endboss extends MovableObject {
     t = 0;
     counter = 0;
     characterNearEndboss = false;
+    BOSSMUSIC = new Audio('audio/bossmusic.mp3');
 
 
 
@@ -86,11 +87,19 @@ class Endboss extends MovableObject {
                 if (this.energy > 0 && world.character.x > 3500) {
                     this.characterNearEndboss = true;
                 }
-                if (this?.characterNearEndboss == true) {
+                if (this?.characterNearEndboss == true && gameIsRunning && this.energy >= 0) {
+                    if(this.x>200){
                     this.moveLeft();
+                    };
+                    this.BOSSMUSIC.play();
+                    GAMESOUND.pause();
+                }
+                if (this.energy <= 0 || world?.character.energy <= 0){
+                    this.BOSSMUSIC.pause();
+                    this.characterNearEndboss = false;
                 }
             }
-        }, 1000 / 60);
+        },10);
 
     }
 

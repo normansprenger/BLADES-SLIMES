@@ -10,6 +10,9 @@ class World {
     magicBar = new Magicbar();
     attacks = [];
     powershots = [];
+    POWERSHOT_SOUND = new Audio('audio/magicpowershot.mp3');
+
+
 
 
     constructor(canvas, keyboard) {
@@ -31,9 +34,15 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    if(enemy.energy > 0){
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
+                    if (enemy.energy > 0 && this.character.energy > 0) {
+                        this.character.hit();
+                        this.statusBar.setPercentage(this.character.energy);
+                        this.character.HURT_SOUND.currentTime = 0;
+                        this.character.HURT_SOUND.play();
+                        setTimeout(() => {
+                        this.character.HURT_SOUND.currentTime = 0;
+                        this.character.HURT_SOUND.pause();
+                        }, 400);
                     }
                 }
             });
@@ -46,8 +55,8 @@ class World {
                 this.level.enemies.forEach((enemy) => {
                     if (this.attacks[0].isColliding(enemy) && enemy.energy > 0) {
                         enemy.hit();
-                        if(this.character.magicEnergy < 100){
-                        this.character.gainMagicEnergy();
+                        if (this.character.magicEnergy < 100) {
+                            this.character.gainMagicEnergy();
                         }
                         this.magicBar.setPercentage(this.character.magicEnergy);
                     }
@@ -63,11 +72,11 @@ class World {
                     if (this.powershots[0]?.isColliding(enemy) && enemy.energy > 0) {
                         enemy.hit();
                         enemy.hit();
-                        if(this.character.magicEnergy < 100){
-                        this.character.gainMagicEnergy();
+                        if (this.character.magicEnergy < 100) {
+                            this.character.gainMagicEnergy();
                         }
                         this.magicBar.setPercentage(this.character.magicEnergy);
-                        this.powershots=[];
+                        this.powershots = [];
                     }
                 });
             }
@@ -94,23 +103,25 @@ class World {
                 this.attacks.push(newAttack);
                 setTimeout(() => {
                     this.attacks = [];
-                }, 300);
+                }, 100);
             }
         }, 10);
     }
 
-    createPowerShot(){
+    createPowerShot() {
         setInterval(() => {
             if (world.keyboard.S && !world.keyboard.SHIFT && this.powershots.length == 0 && world.character.y > 285 && world.character.magicEnergy >= 20) {
                 let newPowershot = new Powershot(this.character.x, this.character.y);
                 this.powershots.push(newPowershot);
-                world.character.magicEnergy -=20;
-                this.magicBar.setPercentage(world.character.magicEnergy);
+                this.POWERSHOT_SOUND.currentTime = 0;
+                this.POWERSHOT_SOUND.play();
+                world.character.magicEnergy -= 20;
                 setTimeout(() => {
                     this.powershots = [];
                 }, 1200);
+                this.magicBar.setPercentage(world.character.magicEnergy);
             }
-        }, 10); 
+        }, 10);
     }
 
     draw() {
@@ -118,7 +129,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.clouds);        
+        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);

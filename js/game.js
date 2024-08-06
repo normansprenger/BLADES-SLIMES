@@ -1,11 +1,20 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameIsRunning = false;
+let GAMESOUND = new Audio('audio/gamemusic.mp3');
+let DEADANDRETRYSOUND = new Audio('audio/deadAndRetry.mp3');
+let SUCCESSSCREENSOUND = new Audio('audio/successScreen.mp3');
+
 
 function startGame() {
-    initLevel();
-    document.getElementById('homeScreen').classList.add('dnone');
-    initGame();
+    if (gameIsRunning == false) {
+        initLevel();
+        document.getElementById('homeScreen').classList.add('dnone');
+        initGame();
+        gameIsRunning = true;
+        startGameMusic();
+    }
 }
 
 function initGame() {
@@ -86,22 +95,29 @@ document.addEventListener('keyup', (event) => {
 })
 
 setInterval(() => {
-    if (world?.level.enemies[10].energy == 0 && world.character.x > 4360 && world.character.money == 100) {
-        setTimeout(() => {
-            gameFinishedSuccess();
-        }, 1000);
-    }
-    else if (world?.character.energy == 0) {
+    if (world?.level.enemies[10].energy == 0 && world.character.x > 4360 && world.character.money == 100 && gameIsRunning == true) {
+        gameIsRunning = false;
+        gameFinishedSuccess();
+    } else if (world?.character.energy == 0 && gameIsRunning == true) {
+        gameIsRunning = false;
         gameFinishedFailure();
     }
 }, 100);
 
 function gameFinishedSuccess() {
     document.getElementById('endScreenSuccess').classList.remove('dnone');
+    GAMESOUND.pause();
+    SUCCESSSCREENSOUND.currentTime = 1;
+    SUCCESSSCREENSOUND.volume = 1;
+    SUCCESSSCREENSOUND.play();
 }
 
 function gameFinishedFailure() {
     document.getElementById('endScreenDead').classList.remove('dnone');
+    GAMESOUND.pause();
+    DEADANDRETRYSOUND.currentTime = 0;
+    DEADANDRETRYSOUND.volume = 1;
+    DEADANDRETRYSOUND.play();
 }
 
 function resetGame() {
@@ -110,7 +126,13 @@ function resetGame() {
     document.getElementById('endScreenSuccess').classList.add('dnone');
     initLevel();
     initGame();
-
+    DEADANDRETRYSOUND.pause();
+    SUCCESSSCREENSOUND.pause();
 }
 
+function startGameMusic() {
+    GAMESOUND.currentTime = 0;
+    GAMESOUND.play();
+    GAMESOUND.volume = 1;
+}
 

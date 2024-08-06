@@ -84,6 +84,10 @@ class Character extends MovableObject {
 
     world;
     WALKING_SOUND = new Audio('audio/walking.mp3');
+    ATTACK_SOUND = new Audio('audio/attack.mp3');
+    JUMP_SOUND = new Audio('audio/jump.mp3');
+    HURT_SOUND = new Audio('audio/hurt.mp3');
+    COIN_SOUND = new Audio('audio/coincollect.mp3');
 
     constructor() {
         super().loadImage('img/1_Hero/Musketeer/WALK/tile000.png');
@@ -104,28 +108,41 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.WALKING_SOUND.pause();
-            if (this.world.keyboard.RIGHT && (this.x < this.world.level.levelEndX)) {
+            if (this.world.keyboard.RIGHT && (this.x < this.world.level.levelEndX && gameIsRunning)) {
                 this.moveRight();
                 this.WALKING_SOUND.play();
             }
 
-            if (this.world.keyboard.RIGHT && this.world.keyboard.SHIFT && (this.x < this.world.level.levelEndX)) {
+            if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285  && gameIsRunning) {
+                this.ATTACK_SOUND.currentTime = 0.2;
+                this.ATTACK_SOUND.play();
+                if (this.ATTACK_SOUND.currentTime > 0.4) {
+                    this.ATTACK_SOUND.pause();
+                }
+            }
+
+            if (this.world.keyboard.RIGHT && this.world.keyboard.SHIFT && (this.x < this.world.level.levelEndX && gameIsRunning)) {
                 this.moveRight();
                 this.WALKING_SOUND.play();
             }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.x > 0 && gameIsRunning) {
                 this.moveLeft();
                 this.WALKING_SOUND.play();
             }
 
-            if (this.world.keyboard.LEFT && this.world.keyboard.SHIFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.world.keyboard.SHIFT && this.x > 0 && gameIsRunning) {
                 this.moveLeft();
                 this.WALKING_SOUND.play();
             }
 
-            if ((this.world.keyboard.SPACE || this.world.keyboard.UP) && (this.y > 285)) {
+            if ((this.world.keyboard.SPACE || this.world.keyboard.UP) && (this.y > 285) && gameIsRunning) {
                 this.jump();
+                this.JUMP_SOUND.currentTime = 0;
+                this.JUMP_SOUND.play();
+                if (this.JUMP_SOUND.currentTime > 0.05) {
+                    this.JUMP_SOUND.pause();
+                }
             }
             this.world.camera_x = -this.x + 60;
         }, 50);
@@ -135,9 +152,9 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285) {
+            } else if (world.keyboard.A && !world.keyboard.SHIFTa && world.character.y > 285 && !this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.world.keyboard.S && !this.world.SHIFT) {
+            } else if (this.world.keyboard.S && !this.world.SHIFT && !this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_POWERSHOTATTACK);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -161,7 +178,15 @@ class Character extends MovableObject {
     }
 
     moneyHit() {
+        if(gameIsRunning){
         this.money += 10;
+        this.COIN_SOUND.currentTime = 0.2;
+        this.COIN_SOUND.play();
+        setTimeout(() => {
+            this.COIN_SOUND.pause();
+            this.COIN_SOUND.currentTime = 0.2;
+        }, 500);
+    }
     }
 
     gainMagicEnergy() {
