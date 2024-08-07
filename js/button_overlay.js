@@ -2,7 +2,7 @@ let gameVolumeOn = true;
 
 function changeScreensize() {
     if (fs_status() == -1) {
-        document.getElementById('body').requestFullscreen();
+        document.getElementById('canvasContainer').requestFullscreen();
         document.getElementById('settingScreensize').classList.add('minimize');
         document.getElementById('homeScreen').classList.add('fullscreen');
         document.getElementById('canvas').classList.add('fullscreen');

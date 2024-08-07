@@ -29,12 +29,15 @@
 </head>
 
 <body id="body">
+    <h1>BLADES & SLIMES</h1>
     <div id="canvasContainer" class="canvasContainer">
         <div class="homeScreen" id="homeScreen" onclick="startGame()"></div>
+        <div class="endScreenSuccess dnone" id="endScreenSuccess" onclick="resetGame()"></div>
+        <div class="endScreenDead dnone" id="endScreenDead" onclick="resetGame()"></div>
         <canvas id="canvas" width="720px" height="480px">
         </canvas>
         <div id="buttonOverlay" class="buttonOverlay">
-            <div class="buttonOverlayToprow">
+            <div class="buttonOverlayTopRow">
                 <div id="settings" class="settings">
                     <div id="settingSound" class="icon soundOff" onclick="toggleGameVolume()"></div>
                     <div id="settingScreensize" class="icon maximize" onclick="changeScreensize()"></div>
@@ -44,19 +47,27 @@
             <div class="buttonOverlayBottomRow">
                 <div class="buttonOverlayBottomRowLeft">
                     <div id="tapRun" class="icon" ontouchstart="touchRunTrue()" ontouchend="touchRunFalse()"></div>
-                    <div id="tapAttack" class="icon" ontouchstart="touchAttackTrue()" ontouchend="touchAttackFalse()"></div>
-                    <div id="tapPowershot" class="icon" ontouchstart="touchPowershotTrue()" ontouchend="touchPowershotFalse()"></div>
+                    <div id="tapAttack" class="icon" ontouchstart="touchAttackTrue()" ontouchend="touchAttackFalse()">
+                    </div>
+                    <div id="tapPowershot" class="icon" ontouchstart="touchPowershotTrue()"
+                        ontouchend="touchPowershotFalse()"></div>
                 </div>
                 <div class="buttonOverlayBottomRowRight">
                     <div id="tapLeft" class="icon" ontouchstart="touchLeftTrue()" ontouchend="touchLeftFalse()"></div>
                     <div id="tapUp" class="icon" ontouchstart="touchUpTrue()" ontouchend="touchUpFalse()"></div>
-                    <div id="tapRight" class="icon" ontouchstart="touchRightTrue()" ontouchend="touchRightFalse()"></div>
+                    <div id="tapRight" class="icon" ontouchstart="touchRightTrue()" ontouchend="touchRightFalse()">
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="dialog">
+            <div class="dialogText">
+                please<br>switch to<br>landscape mode
+            </div>
+        </div>
     </div>
-    <div class="endScreenSuccess dnone" id="endScreenSuccess" onclick="resetGame()"></div>
-    <div class="endScreenDead dnone" id="endScreenDead" onclick="resetGame()"></div>
+    <div>Instrution
+    </div>
 </body>
 
 </html>
