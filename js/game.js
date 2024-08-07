@@ -2,10 +2,10 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameIsRunning = false;
-let GAMESOUND = new Audio('audio/gamemusic.mp3');
-let DEADANDRETRYSOUND = new Audio('audio/deadAndRetry.mp3');
-let SUCCESSSCREENSOUND = new Audio('audio/successScreen.mp3');
-
+let GAME_SOUND = new Audio('audio/gamemusic.mp3');
+let DEADANDRETRY_SOUND = new Audio('audio/deadAndRetry.mp3');
+let SUCCESSSCREEN_SOUND = new Audio('audio/successScreen.mp3');
+changeGameMusicVolume();
 
 function startGame() {
     if (gameIsRunning == false) {
@@ -16,6 +16,17 @@ function startGame() {
         startGameMusic();
     }
 }
+
+setInterval(() => {
+    if (world?.level.enemies[10].energy == 0 && world.character.x > 4360 && world.character.money == 100 && gameIsRunning == true) {
+        gameIsRunning = false;
+        gameFinishedSuccess();
+    } else if (world?.character.energy == 0 && gameIsRunning == true) {
+        gameIsRunning = false;
+        gameFinishedFailure();
+    }
+}, 100);
+
 
 function initGame() {
     canvas = document.getElementById('canvas');
@@ -94,45 +105,52 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
-setInterval(() => {
-    if (world?.level.enemies[10].energy == 0 && world.character.x > 4360 && world.character.money == 100 && gameIsRunning == true) {
-        gameIsRunning = false;
-        gameFinishedSuccess();
-    } else if (world?.character.energy == 0 && gameIsRunning == true) {
-        gameIsRunning = false;
-        gameFinishedFailure();
-    }
-}, 100);
+
+
+
 
 function gameFinishedSuccess() {
     document.getElementById('endScreenSuccess').classList.remove('dnone');
-    GAMESOUND.pause();
-    SUCCESSSCREENSOUND.currentTime = 1;
-    SUCCESSSCREENSOUND.volume = 1;
-    SUCCESSSCREENSOUND.play();
+    GAME_SOUND.pause();
+    SUCCESSSCREEN_SOUND.currentTime = 1;
+    SUCCESSSCREEN_SOUND.play();
 }
 
 function gameFinishedFailure() {
     document.getElementById('endScreenDead').classList.remove('dnone');
-    GAMESOUND.pause();
-    DEADANDRETRYSOUND.currentTime = 0;
-    DEADANDRETRYSOUND.volume = 1;
-    DEADANDRETRYSOUND.play();
+    GAME_SOUND.pause();
+    DEADANDRETRY_SOUND.currentTime = 0;
+    DEADANDRETRY_SOUND.play();
 }
 
 function resetGame() {
+    gameIsRunning = false;
     document.getElementById('homeScreen').classList.remove('dnone');
     document.getElementById('endScreenDead').classList.add('dnone');
     document.getElementById('endScreenSuccess').classList.add('dnone');
     initLevel();
     initGame();
-    DEADANDRETRYSOUND.pause();
-    SUCCESSSCREENSOUND.pause();
+    GAME_SOUND.pause();
+    DEADANDRETRY_SOUND.pause();
+    SUCCESSSCREEN_SOUND.pause();
 }
 
 function startGameMusic() {
-    GAMESOUND.currentTime = 0;
-    GAMESOUND.play();
-    GAMESOUND.volume = 1;
+    GAME_SOUND.currentTime = 0;
+    GAME_SOUND.play();
+}
+
+function changeGameMusicVolume() {
+    setInterval(() => {
+        if (gameVolumeOn == false) {
+            GAME_SOUND.volume = 0;
+            DEADANDRETRY_SOUND.volume = 0;
+            SUCCESSSCREEN_SOUND.volume = 0;
+        } else if (gameVolumeOn == true) {
+            GAME_SOUND.volume = 1;
+            DEADANDRETRY_SOUND.volume = 1;
+            SUCCESSSCREEN_SOUND.volume = 1;
+        }
+    }, 10);
 }
 

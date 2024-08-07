@@ -27,6 +27,7 @@ class World {
         this.checkAttackCollisions();
         this.checkPowershotCollisions();
         this.checkCoinCollisions();
+        this.changeGameVolume();
 
     }
 
@@ -34,15 +35,15 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    if (enemy.energy > 0 && this.character.energy > 0) {
+                    if (enemy.energy > 0 && this.character.energy > 0 && gameIsRunning == true) {
                         this.character.hit();
                         this.statusBar.setPercentage(this.character.energy);
-                        this.character.HURT_SOUND.currentTime = 0;
+                        this.character.HURT_SOUND.currentTime = 0.2;
                         this.character.HURT_SOUND.play();
                         setTimeout(() => {
-                        this.character.HURT_SOUND.currentTime = 0;
-                        this.character.HURT_SOUND.pause();
-                        }, 400);
+                            this.character.HURT_SOUND.currentTime = 0;
+                            this.character.HURT_SOUND.pause();
+                        }, 200);
                     }
                 }
             });
@@ -180,4 +181,16 @@ class World {
     setWorld() {
         this.character.world = this;
     }
+
+
+    changeGameVolume() {
+        setInterval(() => {
+            if (gameVolumeOn == false) {
+                this.POWERSHOT_SOUND.volume = 0;
+            } else if (gameVolumeOn == true) {
+                this.POWERSHOT_SOUND.volume = 1;
+            }
+        }, 10);
+    }
+
 }

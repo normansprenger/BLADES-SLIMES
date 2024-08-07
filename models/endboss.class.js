@@ -55,6 +55,7 @@ class Endboss extends MovableObject {
 
         this.x = 4160;
         this.animate();
+        this.changeBossMusicVolume();
 
 
 
@@ -92,7 +93,7 @@ class Endboss extends MovableObject {
                     this.moveLeft();
                     };
                     this.BOSSMUSIC.play();
-                    GAMESOUND.pause();
+                    GAME_SOUND.pause();
                 }
                 if (this.energy <= 0 || world?.character.energy <= 0){
                     this.BOSSMUSIC.pause();
@@ -103,6 +104,14 @@ class Endboss extends MovableObject {
 
     }
 
-
+    changeBossMusicVolume() {
+        setInterval(() => {
+            if (gameVolumeOn == false) {
+                this.BOSSMUSIC.volume = 0;
+            } else if (gameVolumeOn == true) {
+                this.BOSSMUSIC.volume = 1;
+            }
+        }, 10);
+    }
 
 }

@@ -102,6 +102,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.x = 50;
+        this.changeCharacterVolume();
     }
 
     animate() {
@@ -113,7 +114,7 @@ class Character extends MovableObject {
                 this.WALKING_SOUND.play();
             }
 
-            if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285  && gameIsRunning) {
+            if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285 && gameIsRunning) {
                 this.ATTACK_SOUND.currentTime = 0.2;
                 this.ATTACK_SOUND.play();
                 if (this.ATTACK_SOUND.currentTime > 0.4) {
@@ -178,18 +179,36 @@ class Character extends MovableObject {
     }
 
     moneyHit() {
-        if(gameIsRunning){
-        this.money += 10;
-        this.COIN_SOUND.currentTime = 0.2;
-        this.COIN_SOUND.play();
-        setTimeout(() => {
-            this.COIN_SOUND.pause();
+        if (gameIsRunning) {
+            this.money += 10;
             this.COIN_SOUND.currentTime = 0.2;
-        }, 500);
-    }
+            this.COIN_SOUND.play();
+            setTimeout(() => {
+                this.COIN_SOUND.pause();
+                this.COIN_SOUND.currentTime = 0.2;
+            }, 500);
+        }
     }
 
     gainMagicEnergy() {
         this.magicEnergy += 10;
+    }
+
+    changeCharacterVolume() {
+        setInterval(() => {
+            if (gameVolumeOn == false) {
+                this.WALKING_SOUND.volume = 0;
+                this.ATTACK_SOUND.volume = 0;
+                this.JUMP_SOUND.volume = 0;
+                this.HURT_SOUND.volume = 0;
+                this.COIN_SOUND.volume = 0;
+            } else if (gameVolumeOn == true) {
+                this.WALKING_SOUND.volume = 1;
+                this.ATTACK_SOUND.volume = 1;
+                this.JUMP_SOUND.volume = 1;
+                this.HURT_SOUND.volume = 1;
+                this.COIN_SOUND.volume = 1;
+            }
+        }, 10);
     }
 }

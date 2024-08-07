@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <title>BLADES & SLIMES</title>
     <link rel="icon" type="image/x-icon" href="/img/0_Icons/webIcon.svg">
     <link rel="stylesheet" href="style.css">
+    <script src="js/button_overlay.js"></script>
     <script src="models/drawable_object.class.js"></script>
     <script src="models/movable_object.class.js"></script>
     <script src="models/coins.class.js"></script>
@@ -25,13 +26,33 @@
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
-
 </head>
 
-<body>
-    <div class="canvasContainer">
+<body id="body">
+    <div id="canvasContainer" class="canvasContainer">
         <canvas id="canvas" width="720px" height="480px">
-        </canvas>     
+        </canvas>
+        <div id="buttonOverlay" class="buttonOverlay">
+            <div class="buttonOverlayToprow">
+                <div id="settings" class="settings">
+                    <div id="settingSound" class="icon soundOff" onclick="toggleGameVolume()"></div>
+                    <div id="settingScreensize" class="icon maximize" onclick="changeScreensize()"></div>
+                    <div id="settingHome" class="icon" onclick="resetGame()"></div>
+                </div>
+            </div>
+            <div class="buttonOverlayBottomRow">
+                <div class="buttonOverlayBottomRowLeft">
+                    <div id="tapRun" class="icon" ontouchstart="touchRunTrue()" ontouchend="touchRunFalse()"></div>
+                    <div id="tapAttack" class="icon" ontouchstart="touchAttackTrue()" ontouchend="touchAttackFalse()"></div>
+                    <div id="tapPowershot" class="icon" ontouchstart="touchPowershotTrue()" ontouchend="touchPowershotFalse()"></div>
+                </div>
+                <div class="buttonOverlayBottomRowRight">
+                    <div id="tapLeft" class="icon" ontouchstart="touchLeftTrue()" ontouchend="touchLeftFalse()"></div>
+                    <div id="tapUp" class="icon" ontouchstart="touchUpTrue()" ontouchend="touchUpFalse()"></div>
+                    <div id="tapRight" class="icon" ontouchstart="touchRightTrue()" ontouchend="touchRightFalse()"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="homeScreen" id="homeScreen" onclick="startGame()"></div>
     <div class="endScreenSuccess dnone" id="endScreenSuccess" onclick="resetGame()"></div>
