@@ -99,7 +99,7 @@ class World {
 
     createAttack() {
         setInterval(() => {
-            if (world.keyboard.A && !world.keyboard.SHIFT && this.attacks.length == 0 && world.character.y > 285) {
+            if (world.keyboard.A && !world.keyboard.SHIFT && this.attacks.length == 0 && world.character.y > 235) {
                 let newAttack = new Attack(this.character.x, this.character.y);
                 this.attacks.push(newAttack);
                 setTimeout(() => {
@@ -111,7 +111,7 @@ class World {
 
     createPowerShot() {
         setInterval(() => {
-            if (world.keyboard.S && !world.keyboard.SHIFT && this.powershots.length == 0 && world.character.y > 285 && world.character.magicEnergy >= 20) {
+            if (world.keyboard.S && !world.keyboard.SHIFT && this.powershots.length == 0 && world.character.y > 235 && world.character.magicEnergy >= 20) {
                 let newPowershot = new Powershot(this.character.x, this.character.y);
                 this.powershots.push(newPowershot);
                 this.POWERSHOT_SOUND.currentTime = 0;

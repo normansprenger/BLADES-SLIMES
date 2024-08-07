@@ -1,7 +1,7 @@
 class Slime extends MovableObject {
     height = 300;
     width = 300;
-    y = 170;
+    y = 120;
     widthOffsetX = 170;
     offsetX = 80;
     heightOffsetY = 200;
@@ -48,7 +48,7 @@ class Slime extends MovableObject {
         setInterval(() => {
             if (this.energy < 1) {
                 this.playAnimation(this.IMAGES_DEAD);
-                if(this.t<10){
+                if(this.t<20){
                     this.x += 10;
                     this.y += 10;
                     this.t++;

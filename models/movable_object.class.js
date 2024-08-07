@@ -20,7 +20,7 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 285;
+        return this.y < 235;
     }
 
     moveRight() {

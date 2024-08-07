@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLADES & SLIMES</title>
-    <link rel="icon" type="image/x-icon" href="/img/0_Icons/webIcon.svg">
+    <link rel="icon" type="image/x-icon" href="img/0_Icons/webIcon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="js/button_overlay.js"></script>
     <script src="models/drawable_object.class.js"></script>
@@ -30,6 +30,7 @@
 
 <body id="body">
     <div id="canvasContainer" class="canvasContainer">
+        <div class="homeScreen" id="homeScreen" onclick="startGame()"></div>
         <canvas id="canvas" width="720px" height="480px">
         </canvas>
         <div id="buttonOverlay" class="buttonOverlay">
@@ -54,7 +55,6 @@
             </div>
         </div>
     </div>
-    <div class="homeScreen" id="homeScreen" onclick="startGame()"></div>
     <div class="endScreenSuccess dnone" id="endScreenSuccess" onclick="resetGame()"></div>
     <div class="endScreenDead dnone" id="endScreenDead" onclick="resetGame()"></div>
 </body>

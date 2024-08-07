@@ -2,7 +2,7 @@ class Endboss extends MovableObject {
 
     height = 600;
     width = 600;
-    y = -130;
+    y = -170;
     widthOffsetX = 320;
     offsetX = 130;
     heightOffsetY = 400;
@@ -72,7 +72,7 @@ class Endboss extends MovableObject {
                 }
             } else if (this.energy == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
-                if (this.t < 20) {
+                if (this.t < 30) {
                     this.x += 8;
                     this.y += 8;
                     this.t++;

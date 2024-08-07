@@ -1,6 +1,6 @@
 class Character extends MovableObject {
-    speed = 8;
-    y = 284;
+    speed = 10;
+    y = 234;
     acceleration = 2.5;
     speedY = 0;
     money = 0;
@@ -114,7 +114,7 @@ class Character extends MovableObject {
                 this.WALKING_SOUND.play();
             }
 
-            if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 285 && gameIsRunning) {
+            if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 235 && gameIsRunning) {
                 this.ATTACK_SOUND.currentTime = 0.2;
                 this.ATTACK_SOUND.play();
                 if (this.ATTACK_SOUND.currentTime > 0.4) {
@@ -137,7 +137,7 @@ class Character extends MovableObject {
                 this.WALKING_SOUND.play();
             }
 
-            if ((this.world.keyboard.SPACE || this.world.keyboard.UP) && (this.y > 285) && gameIsRunning) {
+            if ((this.world.keyboard.SPACE || this.world.keyboard.UP) && (this.y > 235) && gameIsRunning) {
                 this.jump();
                 this.JUMP_SOUND.currentTime = 0;
                 this.JUMP_SOUND.play();
@@ -153,7 +153,7 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (world.keyboard.A && !world.keyboard.SHIFTa && world.character.y > 285 && !this.world.keyboard.SHIFT) {
+            } else if (world.keyboard.A && !world.keyboard.SHIFTa && world.character.y > 235 && !this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.world.keyboard.S && !this.world.SHIFT && !this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_POWERSHOTATTACK);
@@ -173,7 +173,7 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 35;
-        if (this.y == 286.5) {
+        if (this.y == 236.5) {
             this.loadImage('img/1_Hero/Musketeer/WALK/tile000.png');
         }
     }

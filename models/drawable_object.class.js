@@ -4,7 +4,7 @@ class DrawableObject{
     imageCache = {};
     currentImage = 0;
     x = 100;
-    y = 290;
+    y = 240;
     height = 180;
     width = 180;
     widthOffsetX = 0;

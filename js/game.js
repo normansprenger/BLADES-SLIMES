@@ -18,7 +18,7 @@ function startGame() {
 }
 
 setInterval(() => {
-    if (world?.level.enemies[10].energy == 0 && world.character.x > 4360 && world.character.money == 100 && gameIsRunning == true) {
+    if (world?.level.enemies[10].energy == 0 && world.character.x >= 4358 && world.character.money == 100 && gameIsRunning == true) {
         gameIsRunning = false;
         gameFinishedSuccess();
     } else if (world?.character.energy == 0 && gameIsRunning == true) {

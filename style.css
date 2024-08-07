@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(/img/4_Background/nature_4/origbig.png);
+    background-image: url(img/4_Background/nature_4/origbig.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -16,12 +16,14 @@ body {
     margin: 0;
 }
 
-.canvasContainer{
+.canvasContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 480px;
-    width: 720px;
+    max-height: 480px;
+    max-width: 720px;
+    width: 100%;
+    height: 100%;
 }
 
 canvas {
@@ -40,13 +42,6 @@ canvas {
     .homeScreen {
         width: 100%;
     }
-
-    canvas,
-    .endScreenSuccess,
-    .endScreenDead,
-    .homeScreen {
-        width: 100%;
-    }
 }
 
 @media screen and (max-height: 480px) {
@@ -57,46 +52,42 @@ canvas {
     .homeScreen {
         height: 100vh;
     }
-
-    canvas,
-    .endScreenSuccess,
-    .endScreenDead,
-    .homeScreen {
-        height: 100vh;
-    }
 }
 
 .homeScreen {
-    position: fixed;
-    display: flex;
-    height: 480px;
-    width: 720px;
-    background-image: url(/img/4_Background/nature_1/HOMESCREEN.png);
-    background-size: 720px 480px;
+    position: absolute;
+    max-height: 480px;
+    max-width: 720px;
+    height: 100%;
+    width: 100%;
+    background-image: url(img/4_Background/nature_1/HOMESCREEN.png);
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 2;
 }
 
 .endScreenSuccess {
-    position: fixed;
-    display: flex;
-    height: 480px;
-    width: 720px;
-    background-image: url(/img/4_Background/nature_1/endscreensuccess.png);
-    background-size: 720px 480px;
+    position: absolute;
+    max-height: 480px;
+    max-width: 720px;
+    height: 100%;
+    width: 100%;
+    background-image: url(img/4_Background/nature_1/endscreensuccess.png);
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 2;
 }
 
 .endScreenDead {
-    position: fixed;
-    display: flex;
-    height: 480px;
-    width: 720px;
-    background-image: url(/img/4_Background/nature_1/endscreendead.png);
-    background-size: 720px 480px;
+    position: absolute;
+    max-height: 480px;
+    max-width: 720px;
+    height: 100%;
+    width: 100%;
+    background-image: url(img/4_Background/nature_1/endscreendead.png);
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 2;
@@ -106,21 +97,21 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     width: 100%;
+    aspect-ratio: 1.5;
     z-index: 3;
     pointer-events: none;
 }
 
-.buttonOverlayToprow{
-    margin-top: 5px;
+.buttonOverlayToprow {
+    margin-top: 10px;
     display: flex;
     width: 100%;
     justify-content: end;
     align-items: center;
 }
 
-.settings{
+.settings {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -128,77 +119,75 @@ canvas {
     margin-right: 5px;
 }
 
-.soundOff{
+.soundOff {
     background-image: url('img/0_Icons/sound-on.svg');
 }
 
-.soundOn{
+.soundOn {
     background-image: url('img/0_Icons/sound-off.svg') !important;
 }
 
-.minimize{
+.minimize {
     background-image: url('img/0_Icons/minimize.svg') !important;
 }
 
-.maximize{
+.maximize {
     background-image: url('img/0_Icons/maximize.svg');
 }
 
-#settingHome{
+#settingHome {
     background-image: url('img/0_Icons/home.svg');
 }
 
-#tapLeft{
+#tapLeft {
     background-image: url('img/0_Icons/arrowRight.svg');
 }
 
-#tapUp{
+#tapUp {
     background-image: url('img/0_Icons/arrowUp.svg');
-    position: relative;
-    bottom: 50px;
 }
 
-#tapRight{
+#tapRight {
     background-image: url('img/0_Icons/arrowLeft.svg');
 }
 
-#tapRun{
+#tapRun {
     background-image: url('img/0_Icons/run.svg');
 }
 
-#tapAttack{
+#tapAttack {
     background-image: url('img/0_Icons/sword.svg');
 }
 
-#tapPowershot{
+#tapPowershot {
     background-image: url('img/0_Icons/spell-book.svg');
     background-color: white;
 }
 
-.buttonOverlayBottomRow{
+.buttonOverlayBottomRow {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.buttonOverlayBottomRowLeft{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px; 
-    margin-left: 5px; 
-}
-
-.buttonOverlayBottomRowRight{
+.buttonOverlayBottomRowLeft {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    margin-right: 5px;  
+    margin-left: 5px;
 }
 
-.icon{
+.buttonOverlayBottomRowRight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-right: 5px;
+}
+
+.icon {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -217,9 +206,12 @@ canvas {
     display: none;
 }
 
-.fullscreen{
+.fullscreen {
     position: absolute !important;
     width: 100% !important;
     height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100% !important;
+    margin: 0 !important;
 }
