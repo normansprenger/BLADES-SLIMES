@@ -7,6 +7,7 @@
     <title>BLADES & SLIMES</title>
     <link rel="icon" type="image/x-icon" href="img/0_Icons/webIcon.svg">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/metal_mania_font.css">
     <script src="js/button_overlay.js"></script>
     <script src="models/drawable_object.class.js"></script>
     <script src="models/movable_object.class.js"></script>
@@ -39,10 +40,10 @@
         <div id="buttonOverlay" class="buttonOverlay">
             <div class="buttonOverlayTopRow">
                 <div id="settings" class="settings">
-                    <a href="/html/imprint.html"><div class="info icon"></div></a>
-                    <div id="settingSound" class="icon soundOff" onclick="toggleGameVolume()"></div>
-                    <div id="settingScreensize" class="icon maximize" onclick="changeScreensize()"></div>
-                    <div id="settingHome" class="icon" onclick="resetGame()"></div>
+                    <a href="/html/imprint.html"><div class="info iconSetting"></div></a>
+                    <div id="settingSound" class="iconSetting soundOff" onclick="toggleGameVolume()"></div>
+                    <div id="settingScreensize" class="iconSetting maximize" onclick="changeScreensize()"></div>
+                    <div id="settingHome" class="iconSetting" onclick="resetGame()"></div>
                 </div>
             </div>
             <div class="buttonOverlayBottomRow">
@@ -68,6 +69,7 @@
         </div>
         
     </div>
+    <div class="description">Goal: get ALL coins, kill the Endboss, reach the finish line</div>
 </body>
 
 </html>

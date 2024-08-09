@@ -72,7 +72,7 @@ canvas {
     canvas{
         width: 460px;
     }
-    .headline{
+    .headline, .description{
         display: none;
     }
     .icon {
@@ -230,7 +230,17 @@ canvas {
     pointer-events: all;
 }
 
-
+.iconSetting{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+        pointer-events: all;
+}
 
 
 .dnone {
@@ -264,6 +274,22 @@ canvas {
     color: white;
     font-weight: 700;
     text-align: center;
+}
+
+.headline{
+    font-family: 'Metal Mania';
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.description{
+    font-family: 'Metal Mania';
+    font-size: 20px;
+    margin-top: 10px; 
+    color: rgb(92, 18, 33);
+    background-color: rgba(255, 255, 255, 0.587);
+    width: 460px;
+    border-radius: 4px;
 }
 
 @media screen and (min-width: 460px) {
