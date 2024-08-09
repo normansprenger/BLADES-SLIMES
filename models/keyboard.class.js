@@ -1,3 +1,6 @@
+/**
+ * Represents the state of keyboard keys in the game.
+ */
 class Keyboard {
     LEFT = false;
     RIGHT = false;
@@ -12,50 +15,86 @@ class Keyboard {
     S = false;
 }
 
+/**
+ * Sets the `A` key state in the `keyboard` object to `true`.
+ */
 function touchAttackTrue() {
-    keyboard.A = true
+    keyboard.A = true;
 }
 
+/**
+ * Sets the `A` key state in the `keyboard` object to `false`.
+ */
 function touchAttackFalse() {
-    keyboard.A = false
+    keyboard.A = false;
 }
 
+/**
+ * Sets the `S` key state in the `keyboard` object to `true`.
+ */
 function touchPowershotTrue() {
-    keyboard.S = true
+    keyboard.S = true;
 }
 
+/**
+ * Sets the `S` key state in the `keyboard` object to `false`.
+ */
 function touchPowershotFalse() {
-    keyboard.S = false
+    keyboard.S = false;
 }
 
+/**
+ * Sets the `LEFT` key state in the `keyboard` object to `true`.
+ */
 function touchLeftTrue() {
-    keyboard.LEFT = true
+    keyboard.LEFT = true;
 }
 
+/**
+ * Sets the `LEFT` key state in the `keyboard` object to `false`.
+ */
 function touchLeftFalse() {
-    keyboard.LEFT = false
+    keyboard.LEFT = false;
 }
 
+/**
+ * Sets the `UP` key state in the `keyboard` object to `true`.
+ */
 function touchUpTrue() {
-    keyboard.UP = true
+    keyboard.UP = true;
 }
 
+/**
+ * Sets the `UP` key state in the `keyboard` object to `false`.
+ */
 function touchUpFalse() {
-    keyboard.UP = false
+    keyboard.UP = false;
 }
 
+/**
+ * Sets the `RIGHT` key state in the `keyboard` object to `true`.
+ */
 function touchRightTrue() {
-    keyboard.RIGHT = true
+    keyboard.RIGHT = true;
 }
 
+/**
+ * Sets the `RIGHT` key state in the `keyboard` object to `false`.
+ */
 function touchRightFalse() {
-    keyboard.RIGHT = false
+    keyboard.RIGHT = false;
 }
 
+/**
+ * Sets the `SHIFT` key state in the `keyboard` object to `true`.
+ */
 function touchRunTrue() {
-    keyboard.SHIFT = true
+    keyboard.SHIFT = true;
 }
 
+/**
+ * Sets the `SHIFT` key state in the `keyboard` object to `false`.
+ */
 function touchRunFalse() {
-    keyboard.SHIFT = false
+    keyboard.SHIFT = false;
 }

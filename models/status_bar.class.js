@@ -1,4 +1,9 @@
+/**
+ * Represents a magic bar displayed on the screen, used to show a character's magic.
+ */
 class Statusbar extends DrawableObject {
+
+    //IMAGES
     IMAGES_HEALTH = [
         'img/6_Bars/Healthbar/health0.png',
         'img/6_Bars/Healthbar/health10.png',
@@ -13,6 +18,9 @@ class Statusbar extends DrawableObject {
         'img/6_Bars/Healthbar/health100.png',
     ];
 
+    /**
+    * Initializes a new instance of the class with default properties and settings.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_HEALTH);
@@ -21,15 +29,20 @@ class Statusbar extends DrawableObject {
         this.width = 300;
         this.height = 30;
         this.setPercentage(100);
-
     }
 
+    /**
+    * Sets the percentage value and updates the object's image accordingly.
+    */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+    * Determines the index of the image based on the current percentage value.
+    */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 10;

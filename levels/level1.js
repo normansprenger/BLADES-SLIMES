@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * Initializes the level by setting up game objects and background elements.
+ */
 function initLevel() {
     level1 = new Level(
         [

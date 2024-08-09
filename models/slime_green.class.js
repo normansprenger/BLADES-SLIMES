@@ -1,3 +1,6 @@
+/**
+ * Represents a green slime in the game, extends movable object.
+ */
 class SlimeGreen extends MovableObject {
     height = 300;
     width = 300;
@@ -7,9 +10,9 @@ class SlimeGreen extends MovableObject {
     heightOffsetY = 200;
     offsetY = 230;
     energy = 10;
-    t=0;
+    t = 0;
 
-
+    //IMAGES
     IMAGES_WALKING = [
         'img/3_Slimes/Green_Slime/WALK/tile000.png',
         'img/3_Slimes/Green_Slime/WALK/tile001.png',
@@ -25,36 +28,54 @@ class SlimeGreen extends MovableObject {
         'img/3_Slimes/Green_Slime/DEAD/tile002.png',
     ];
 
+    /**
+    * Initializes a green slime with specified attributes, including its position, energy level, and speed. 
+    * Loads the necessary images for the slime's walking and dead animations, and starts its animation loop.
+    */
     constructor(x) {
         super().loadImage('img/3_Slimes/Green_Slime/WALK/tile000.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.energy = 10;
         this.x = x + (Math.random() * 100);
-        this.speed =  0.10 + Math.random() * 0.45;
+        this.speed = 0.10 + Math.random() * 0.45;
         this.animate();
     }
 
+    /**
+    * Manages the animation and movement of the slime.
+    */
     animate() {
+        this.moveLeftContinous();
+        this.updateAnimationAndPosition();
+    }
+
+    /**
+    * Starts the movement of the slime left at a consistent frame rate.
+    */
+    moveLeftContinous() {
         setInterval(() => {
             if (this.energy > 0 && gameIsRunning) {
                 this.moveLeft();
             }
         }, 1000 / 60);
+    }
 
-
+    /**
+    * Continuously updates the slime's animation and position based on its energy level.
+    */
+    updateAnimationAndPosition() {
         setInterval(() => {
             if (this.energy < 1) {
-                this.playAnimation(this.IMAGES_DEAD);
-                if(this.t<20){
-                    this.x += 10;
-                    this.y += 10;
-                    this.t++;
+                this.playAnimation(this.IMAGES_DEAD); // Play dead animation
+                if (this.t < 20) {
+                    this.x += 10; // Move slime right
+                    this.y += 10; // Move slime down
+                    this.t++; // Increment the counter for movement
                 }
-
             } else {
-                this.playAnimation(this.IMAGES_WALKING);
+                this.playAnimation(this.IMAGES_WALKING); // Play walking animation
             }
-        }, 120);
+        }, 120); // Update every 120 milliseconds
     }
 }

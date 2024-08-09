@@ -1,4 +1,9 @@
-class Magicbar extends DrawableObject{
+/**
+ * Represents a magic bar displayed on the screen, used to show a character's magic.
+ */
+class Magicbar extends DrawableObject {
+
+    //IMAGES
     IMAGES_MAGICBAR = [
         'img/6_Bars/Magicbar/magic0.png',
         'img/6_Bars/Magicbar/magic10.png',
@@ -13,6 +18,12 @@ class Magicbar extends DrawableObject{
         'img/6_Bars/Magicbar/magic100.png',
     ];
 
+    /**
+    * Creates an instance of the Magicbar class.
+    * 
+    * The constructor initializes the magic bar with default settings and loads the necessary images.
+    * It sets the position and size of the magic bar on the screen and initializes its percentage to 0.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_MAGICBAR);
@@ -21,15 +32,20 @@ class Magicbar extends DrawableObject{
         this.width = 300;
         this.height = 30;
         this.setPercentage(0);
-
     }
 
+    /**
+    * Sets the percentage of the magic bar and updates the displayed image accordingly.
+    */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_MAGICBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+    * Resolves the index of the image to be used based on the current percentage of the magic bar.
+    */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 10;

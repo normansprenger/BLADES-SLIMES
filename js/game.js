@@ -7,6 +7,10 @@ let DEADANDRETRY_SOUND = new Audio('audio/deadAndRetry.mp3');
 let SUCCESSSCREEN_SOUND = new Audio('audio/successScreen.mp3');
 changeGameMusicVolume();
 
+/**
+ * This function starts the game. The boolean variable gameIsRunning has to be false.
+ * Adds the class "dnone" to the element with the ID 'homeScreen'.
+ */
 function startGame() {
     if (gameIsRunning == false) {
         initLevel();
@@ -17,6 +21,9 @@ function startGame() {
     }
 }
 
+/**
+ * Periodically checks game conditions and triggers the appropriate end game scenario.
+ */
 setInterval(() => {
     if (world?.level.enemies[10].energy == 0 && world.character.x >= 4358 && world.character.money == 100 && gameIsRunning == true) {
         gameIsRunning = false;
@@ -27,12 +34,20 @@ setInterval(() => {
     }
 }, 100);
 
-
+/**
+ * Initializes the game by setting up the canvas and creating the game world.
+ */
 function initGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
 
+/**
+ * Adds an event listener to the document to handle keyboard input.
+ *
+ * This event listener listens for `keydown` events and sets the corresponding 
+ * properties in the `keyboard` object to `true` when specific keys are pressed.
+ */
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -69,6 +84,12 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
+/**
+ * Adds an event listener to the document to handle keyboard input.
+ *
+ * This event listener listens for `keyup` events and sets the corresponding 
+ * properties in the `keyboard` object to `false` when specific keys are not pressed.
+ */
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = false;
@@ -105,10 +126,9 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
-
-
-
-
+/**
+ * Handles the actions to be performed when the game is successfully completed.
+ */
 function gameFinishedSuccess() {
     document.getElementById('endScreenSuccess').classList.remove('dnone');
     GAME_SOUND.pause();
@@ -116,6 +136,9 @@ function gameFinishedSuccess() {
     SUCCESSSCREEN_SOUND.play();
 }
 
+/**
+ * Handles the actions to be performed when the game ends in failure.
+ */
 function gameFinishedFailure() {
     document.getElementById('endScreenDead').classList.remove('dnone');
     GAME_SOUND.pause();
@@ -123,6 +146,9 @@ function gameFinishedFailure() {
     DEADANDRETRY_SOUND.play();
 }
 
+/**
+ * Resets the game to its initial state, preparing it for a new playthrough.
+ */
 function resetGame() {
     gameIsRunning = false;
     document.getElementById('homeScreen').classList.remove('dnone');
@@ -135,11 +161,17 @@ function resetGame() {
     SUCCESSSCREEN_SOUND.pause();
 }
 
+/**
+ * Starts the game music
+ */
 function startGameMusic() {
     GAME_SOUND.currentTime = 0;
     GAME_SOUND.play();
 }
 
+/**
+ * Adjusts the game music volume based on the current state of the `gameVolumeOn` variable.
+ */
 function changeGameMusicVolume() {
     setInterval(() => {
         if (gameVolumeOn == false) {
