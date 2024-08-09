@@ -38,49 +38,6 @@ canvas {
     position: absolute;
 }
 
-
-@media screen and (max-width: 720px) {
-
-    canvas,
-    .endScreenSuccess,
-    .endScreenDead,
-    .homeScreen {
-        width: 100%;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .buttonOverlayBottomRowRight,
-    .buttonOverlayBottomRowLeft {
-        display: none !important;
-    }
-}
-
-
-
-@media screen and (max-width: 600px){
-    .icon {
-        height: 40px !important;
-        width: 40px !important;
-    }
-}
-
-@media screen and (max-height: 600px) {
-    .canvasContainer{
-        width: 460px;
-    }
-    canvas{
-        width: 460px;
-    }
-    .headline, .description{
-        display: none;
-    }
-    .icon {
-        height: 40px !important;
-        width: 40px !important;
-    }
-}
-
 .homeScreen {
     position: absolute;
     max-height: 480px;
@@ -146,7 +103,7 @@ canvas {
     margin-right: 5px;
 }
 
-.info{
+.info {
     background-image: url('img/0_Icons/information.svg');
 }
 
@@ -230,18 +187,17 @@ canvas {
     pointer-events: all;
 }
 
-.iconSetting{
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: block;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        cursor: pointer;
-        pointer-events: all;
+.iconSetting {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+    pointer-events: all;
 }
-
 
 .dnone {
     display: none !important;
@@ -256,12 +212,13 @@ canvas {
     background-size: 100% 100% !important;
     margin: 0 !important;
 }
-.dialog{
+
+.dialog {
     position: fixed;
     bottom: 0;
     top: 0;
     right: 0;
-    left:0;
+    left: 0;
     z-index: 100;
     background-color: black;
     display: flex;
@@ -269,24 +226,24 @@ canvas {
     align-items: center;
 }
 
-.dialogText{
+.dialogText {
     font-size: 40px;
     color: white;
     font-weight: 700;
     text-align: center;
 }
 
-.headline{
+.headline {
     font-family: 'Metal Mania';
     font-size: 60px;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.description{
+.description {
     font-family: 'Metal Mania';
     font-size: 20px;
-    margin-top: 10px; 
+    margin-top: 10px;
     color: rgb(92, 18, 33);
     background-color: rgba(255, 255, 255, 0.587);
     width: 460px;
@@ -297,5 +254,50 @@ canvas {
 @media screen and (min-width: 460px) {
     .dialog {
         display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .icon {
+        height: 40px !important;
+        width: 40px !important;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .canvasContainer {
+        width: 460px;
+    }
+
+    canvas {
+        width: 460px;
+    }
+
+    .headline,
+    .description {
+        display: none;
+    }
+
+    .icon {
+        height: 40px !important;
+        width: 40px !important;
+    }
+}
+
+@media screen and (max-width: 720px) {
+
+    canvas,
+    .endScreenSuccess,
+    .endScreenDead,
+    .homeScreen {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .buttonOverlayBottomRowRight,
+    .buttonOverlayBottomRowLeft {
+        display: none !important;
     }
 }
