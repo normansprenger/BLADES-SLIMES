@@ -1,4 +1,4 @@
-class Slime extends MovableObject {
+class SlimeBlue extends MovableObject {
     height = 300;
     width = 300;
     y = 120;
@@ -39,7 +39,7 @@ class Slime extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.energy > 0) {
+            if (this.energy > 0 && gameIsRunning) {
                 this.moveLeft();
             }
         }, 1000 / 60);

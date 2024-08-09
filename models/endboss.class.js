@@ -95,7 +95,7 @@ class Endboss extends MovableObject {
                     this.BOSSMUSIC.play();
                     GAME_SOUND.pause();
                 }
-                if (this.energy <= 0 || world?.character.energy <= 0){
+                if (this.energy <= 0 || world?.character.energy <= 0 && gameIsRunning){
                     this.BOSSMUSIC.pause();
                     this.characterNearEndboss = false;
                 }

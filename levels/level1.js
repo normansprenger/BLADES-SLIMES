@@ -3,16 +3,16 @@ let level1;
 function initLevel() {
     level1 = new Level(
         [
-            new Slime(700),
-            new Slime(800),
-            new Slime(1100),
-            new Slime(1200),
-            new Slime(1400),
-            new Slime(1800),
-            new Slime(2200),
-            new Slime(2600),
-            new Slime(3000),
-            new Slime(3500),
+            new SlimeGreen(700),
+            new SlimeBlue(900),
+            new SlimeGreen(1100),
+            new SlimeBlue(1200),
+            new SlimeGreen(1400),
+            new SlimeBlue(1800),
+            new SlimeGreen(2200),
+            new SlimeBlue(2600),
+            new SlimeGreen(3000),
+            new SlimeBlue(3500),
             new Endboss(),
         ],
         [

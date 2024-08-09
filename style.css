@@ -65,7 +65,7 @@ canvas {
     }
 }
 
-@media screen and (max-height: 480px) {
+@media screen and (max-height: 600px) {
     .canvasContainer{
         width: 460px;
     }
@@ -280,6 +280,7 @@ canvas {
     font-family: 'Metal Mania';
     font-size: 60px;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .description{
@@ -290,6 +291,7 @@ canvas {
     background-color: rgba(255, 255, 255, 0.587);
     width: 460px;
     border-radius: 4px;
+    padding: 5px;
 }
 
 @media screen and (min-width: 460px) {
