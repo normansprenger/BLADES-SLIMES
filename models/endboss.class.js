@@ -85,22 +85,24 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             if (world?.character) {
-                if (this.energy > 0 && world.character.x > 3500) {
-                    this.characterNearEndboss = true;
-                }
-                if (this?.characterNearEndboss == true && gameIsRunning && this.energy >= 0) {
-                    if(this.x>200){
-                    this.moveLeft();
-                    };
-                    this.BOSSMUSIC.play();
-                    GAME_SOUND.pause();
-                }
-                if (this.energy <= 0 || world?.character.energy <= 0 && gameIsRunning){
-                    this.BOSSMUSIC.pause();
+                if (this.energy <= 0 || !gameIsRunning) {
                     this.characterNearEndboss = false;
+                    this.BOSSMUSIC.pause();
+                }
+                if(this.energy<=0 && gameIsRunning){
+                    GAME_SOUND.play();
+                }
+
+                if (this.energy > 0 && world.character.x > 3500 && gameIsRunning && this.energy > 0) {
+                    this.characterNearEndboss = true;
+                    GAME_SOUND.pause();
+                    this.BOSSMUSIC.play();
+                }
+                if (this.characterNearEndboss && this.x > 200) {
+                    this.moveLeft();
                 }
             }
-        },10);
+        }, 10);
 
     }
 

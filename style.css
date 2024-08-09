@@ -238,6 +238,7 @@ canvas {
     font-size: 60px;
     margin-bottom: 10px;
     margin-top: 0;
+    text-shadow: rgb(13, 13, 182) 1px 0 10px;
 }
 
 .description {
