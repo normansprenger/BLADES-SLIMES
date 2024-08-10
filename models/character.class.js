@@ -14,6 +14,7 @@ class Character extends MovableObject {
     energy = 100;
     magicEnergy = 0;
     world;
+    animationAttackTimer = false;
 
     //SOUNDS
     WALKING_SOUND = new Audio('audio/walking.mp3');
@@ -129,7 +130,7 @@ class Character extends MovableObject {
             this.WALKING_SOUND.pause();
             this.walkRight();
             this.walkLeft();
-            this.performAttackSound();
+            //this.performAttackSound();
             this.runRight();
             this.runLeft();
             this.performJumpSound();
@@ -144,8 +145,9 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.world.keyboard.A && !this.world.keyboard.SHIFT && world.character.y > 235) {
+            } else if (this.world.attackTimer && !this.world.attacks.length == 0) {
                 this.playAnimation(this.IMAGES_ATTACK);
+                this.performAttackSound();
             } else if (this.world.keyboard.S && !this.world.keyboard.SHIFT) {
                 this.playAnimation(this.IMAGES_POWERSHOTATTACK);
             } else if (this.isHurt()) {
@@ -186,13 +188,17 @@ class Character extends MovableObject {
      * Plays the attack sound under specific conditions.
      */
     performAttackSound() {
-        if (world.keyboard.A && !world.keyboard.SHIFT && world.character.y > 235 && gameIsRunning) {
+        if (gameIsRunning && !this.animationAttackTimer) {
+            this.animationAttackTimer = true;
             this.ATTACK_SOUND.currentTime = 0.2;
             this.ATTACK_SOUND.play();
             if (this.ATTACK_SOUND.currentTime > 0.4) {
                 this.ATTACK_SOUND.pause();
             };
         };
+        setTimeout(() => {
+            this.animationAttackTimer = false;    
+        }, 1000);
     }
 
     /**

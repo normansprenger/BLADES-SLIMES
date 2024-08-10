@@ -13,6 +13,7 @@ class World {
     magicBar = new Magicbar();
     attacks = [];
     powershots = [];
+    attackTimer = false;
     POWERSHOT_SOUND = new Audio('audio/magicpowershot.mp3');
 
     /**
@@ -121,12 +122,16 @@ class World {
     */
     createAttack() {
         setInterval(() => {
-            if (world.keyboard.A && !world.keyboard.SHIFT && this.attacks.length == 0 && world.character.y > 235) {
+            if (world.keyboard.A && !world.keyboard.SHIFT && this.attacks.length == 0 && world.character.y > 235 && !this.attackTimer) {
+                this.attackTimer = true;
+                setTimeout(() => {
+                    this.attackTimer = false;
+                }, 1000);
                 let newAttack = new Attack(this.character.x, this.character.y);
                 this.attacks.push(newAttack);
                 setTimeout(() => {
                     this.attacks = [];
-                }, 100);
+                }, 300);
             }
         }, 10);
     }
@@ -153,31 +158,69 @@ class World {
     }
 
     /**
-    * Clears the canvas, translates the canvas context based on the camera's position,
-    * and draws all elements including background objects, character, clouds, coins,
-    * status bars, enemies, attacks, and power shots. 
-    * Handles the animation loop by requesting the next animation frame.
-    */
+     * Draws all elements on the canvas, handles camera translation, and updates the animation frame.
+     */
     draw() {
+        this.clearCanvas();
+        this.drawBackground();
+        this.drawCharacter();
+        this.drawForegroundElements();
+        this.drawUI();
+        this.drawEnemiesAndEffects();
+
+        // Recursively calls the draw function to create an animation loop.
+        requestAnimationFrame(() => this.draw());
+    }
+
+    /**
+     * Clears the entire canvas to prepare for the next frame.
+     */
+    clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    /**
+     * Draws the background elements and translates the canvas according to the camera's position.
+     */
+    drawBackground() {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+    }
+
+    /**
+     * Draws the main character on the canvas.
+     */
+    drawCharacter() {
         this.addToMap(this.character);
+    }
+
+    /**
+     * Draws foreground elements such as clouds, coins, and other in-game objects.
+     */
+    drawForegroundElements() {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
-        this.ctx.translate(-this.camera_x, 0);
+        this.ctx.translate(-this.camera_x, 0); // Reset the translation to prevent UI elements from moving with the camera
+    }
+
+    /**
+     * Draws the user interface (status bar, coin bar, magic bar) on the canvas.
+     */
+    drawUI() {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.magicBar);
+    }
+
+    /**
+     * Draws enemies and effects like attacks and powershots, translating the canvas as needed.
+     */
+    drawEnemiesAndEffects() {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.attacks);
         this.addObjectsToMap(this.powershots);
         this.ctx.translate(-this.camera_x, 0);
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
     }
 
     /**

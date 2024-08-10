@@ -295,8 +295,7 @@ canvas {
     }
 }
 
-@media screen and (min-width: 1024px) {
-
+@media screen and (min-width: 1380px) {
     .buttonOverlayBottomRowRight,
     .buttonOverlayBottomRowLeft {
         display: none !important;
