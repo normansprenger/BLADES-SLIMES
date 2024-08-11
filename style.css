@@ -103,10 +103,6 @@ canvas {
     margin-right: 5px;
 }
 
-.info {
-    background-image: url('img/0_Icons/information.svg');
-}
-
 .soundOff {
     background-image: url('img/0_Icons/sound-on.svg');
 }
